@@ -9,12 +9,12 @@ async function connect() {
         connectionString: process.env.CONNECTION_STRING
     });
 
-    const cliente = await pool.connect();
+    const client = await pool.connect();
     console.log("Pool criado");
 
-    const res = await cliente.query("select now()");
+    const res = await client.query("select now()");
     console.log(res.rows[0]);
-    cliente.release();
+    client.release();
 
     global.connection = pool;
     return pool.connect();
