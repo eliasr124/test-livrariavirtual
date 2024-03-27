@@ -22,11 +22,13 @@ app.get("/", (req, resp) => {
 });
 
 app.get("/livros/:id", async (req, resp) => {
+    resp.setHeader('Access-Control-Allow-Origin', '*');
     const livro = await db.selectLivro(req.params.id);
     resp.json(livro);
 });
 
 app.get("/livros", async (req, resp) => {
+    resp.setHeader('Access-Control-Allow-Origin', '*');
     const livros = await db.selectLivros();
     resp.json(livros);
 });
