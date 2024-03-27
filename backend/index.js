@@ -1,5 +1,5 @@
 require("dotenv").config();
-const request = require("request");
+require("request");
 
 const db = require("./db");
 
@@ -8,12 +8,6 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-
-// const apiHost = "http://54.167.117.206:8000/livro/";
-
-// request(`${apiHost}`, (err, res, body) => {
-//     console.log(body);
-// })
 
 app.get("/", (req, resp) => {
     resp.json({
