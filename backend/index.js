@@ -2,6 +2,8 @@ require("dotenv").config();
 require("request");
 const cors = require("cors");
 const db = require("./db");
+const PORT = 3001;
+const HOST = '0.0.0.0';
 
 const express = require("express");
 
@@ -41,6 +43,6 @@ app.put("/livros/:id", async (req, resp) => {
     resp.sendStatus(204);
 });
 
-app.listen('3001');
+app.listen(PORT, HOST);
 
 console.log("backend rodando!");
