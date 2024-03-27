@@ -1,31 +1,36 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { TbBooks } from 'react-icons/tb';
-import React from "react";
-
+import "./NavBar.css";
 
 const Navbar = () => {
 
-    const [data, setData] = React.useState(null);
+    const [search, setSearch] = useState("");
+    const navigate = useNavigate();
 
-    React.useEffect(() => {
-        fetch("http://localhost:3001/livros")
-        .then((res) => res.json())
-        .then((data) => setData(data.message))
-    }, []);
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(!search) return
 
-    console.log(data)
+        navigate(`/search?q=${search}`)
+        setSearch("");
+    }
+
 
     return(
         
         <nav id="navbar">
             <h2>
                 <Link to="/">
-                <TbBooks />Home</Link>
+                <TbBooks />Livros List</Link>
             </h2>
-            <h1> { !data ? 'Loading ...' :  data }</h1>
-            <form>
-                <input type="text" placeholder="Busque um livro"/>
+            
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Busque um livro" 
+                    onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                />
                 <button type="submit">
                     <BiSearchAlt2 />
                 </button>

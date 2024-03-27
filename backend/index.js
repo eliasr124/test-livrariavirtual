@@ -1,6 +1,6 @@
 require("dotenv").config();
-const request = require("request");
-
+require("request");
+const cors = require("cors");
 const db = require("./db");
 
 const express = require("express");
@@ -8,12 +8,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-
-// const apiHost = "http://54.167.117.206:8000/livro/";
-
-// request(`${apiHost}`, (err, res, body) => {
-//     console.log(body);
-// })
+app.use(cors());
 
 app.get("/", (req, resp) => {
     resp.json({
@@ -22,13 +17,11 @@ app.get("/", (req, resp) => {
 });
 
 app.get("/livros/:id", async (req, resp) => {
-    resp.setHeader('Access-Control-Allow-Origin', '*');
     const livro = await db.selectLivro(req.params.id);
     resp.json(livro);
 });
 
 app.get("/livros", async (req, resp) => {
-    resp.setHeader('Access-Control-Allow-Origin', '*');
     const livros = await db.selectLivros();
     resp.json(livros);
 });
