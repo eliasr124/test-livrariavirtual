@@ -8,6 +8,7 @@ import App from './App';
 import Home from './pages/Home';
 import Livro from './pages/Livro';
 import Search from './pages/Search';
+import Login from './pages/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route element={<App />}>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Login />} />
           <Route path='livro/:id' element={<Livro />} />
           <Route path='search' element={<Search />} />
 
